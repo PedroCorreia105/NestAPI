@@ -1,0 +1,158 @@
+version: '3.8'
+
+services:
+  dev-db:
+    image: postgres:13
+    container_name: dev-db
+    restart: always
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: psqluser
+      POSTGRES_PASSWORD: psqlpass
+      POSTGRES_DB: psqldb
+
+  test-db:
+    image: postgres:13
+    container_name: test-db
+    restart: always
+    ports:
+      - 5435:5432
+    environment:
+      POSTGRES_USER: psqluser
+      POSTGRES_PASSWORD: psqlpass
+      POSTGRES_DB: psqldb
+
+  nest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nest-api                                         
+    container_name: nest-api
+    depends_on:
+      - test-db
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+    environment:
+      - DATABASE_URL=postgresql://psqluser:psqlpass@test-db:5432/psqldb
+      - PORT=8080
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8080/api"]
+        interval: 40s
+        timeout: 20s
+        retries: 5
+
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - 8086:8086
+    environment:
+      - INFLUXDB_DB=k6
+    
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+      influxdb:
+        condition: service_started
+    ports:
+      - 3000:3000
+    environment:
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_BASIC_ENABLED=false
+    volumes:
+      - ./resources/grafana/k6-load-testing-results_rev3.json:/var/lib/grafana/dashboards/k6-load-testing-results_rev3.json
+      - ./resources/grafana/grafana-dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - ./resources/grafana/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+
+  k6-auth:
+    image: grafana/k6:latest
+    depends_on:
+      influxdb:
+        condition: service_started
+      grafana:
+        condition: service_started
+      nest-api:
+        condition: service_healthy
+    ports:
+       - 6564:6564
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+      - BASE_URL=http://nest-api:8080
+    volumes:
+       - ./dist/test:/test
+    command: run /test/load/auth.load.js
+
+  k6-review:
+    image: grafana/k6:latest
+    depends_on:
+      influxdb:
+        condition: service_started
+      grafana:
+        condition: service_started
+      nest-api:
+        condition: service_healthy
+    ports:
+       - 6565:6565
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+      - BASE_URL=http://nest-api:8080
+    volumes:
+       - ./dist/test:/test
+    command: run /test/load/review.load.js
+
+  k6-room:
+    image: grafana/k6:latest
+    depends_on:
+      influxdb:
+        condition: service_started
+      grafana:
+        condition: service_started
+      nest-api:
+        condition: service_healthy
+    ports:
+       - 6566:6566
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+      - BASE_URL=http://nest-api:8080
+    volumes:
+       - ./dist/test:/test
+    command: run /test/load/room.load.js
+
+  k6-shop:
+    image: grafana/k6:latest
+    depends_on:
+      influxdb:
+        condition: service_started
+      grafana:
+        condition: service_started
+      nest-api:
+        condition: service_healthy
+    ports:
+       - 6567:6567
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+      - BASE_URL=http://nest-api:8080
+    volumes:
+       - ./dist/test:/test
+    command: run /test/load/shop.load.js
+    
+  k6-user:
+    image: grafana/k6:latest
+    depends_on:
+      influxdb:
+        condition: service_started
+      grafana:
+        condition: service_started
+      nest-api:
+        condition: service_healthy
+    ports:
+       - 6568:6568
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+      - BASE_URL=http://nest-api:8080
+    volumes:
+       - ./dist/test:/test
+    command: run /test/load/user.load.js
