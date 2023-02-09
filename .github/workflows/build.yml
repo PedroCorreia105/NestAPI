@@ -12,7 +12,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    
+
     steps:
     - uses: actions/checkout@v3
 
@@ -33,7 +33,7 @@ jobs:
 
     - name: Run e2e tests
       run: npx dotenv -e .env.test -- jest --no-cache --runInBand --coverage
-    
+
     - name: Register code coverage
       uses: codecov/codecov-action@v2
       with:

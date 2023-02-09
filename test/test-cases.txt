@@ -1,0 +1,73 @@
+auth
+    should throw error if signup email empty
+    should throw error if signup password empty
+    should throw error if signup body not provided
+    should signup
+    should throw error if signin email empty
+    should throw error if signin password empty
+    should throw error if signin body not provided
+    should throw error if signin password incorrect
+    should throw error if signin email incorrect
+    should signin
+    should throw error if user is deleted after authentication
+
+user
+    should get current user
+    should edit user
+    should change role to admin
+    should change role to manager
+    should change role to user
+    should throw error when changing role to nonexistent role
+
+shop
+    should create shop
+    should throw error when creating a second shop
+    should get shops
+    should get shop by id
+    should throw error when editing if not manager
+    should edit shop
+    should throw error when deleting if not manager
+    should delete shop
+    should throw error when getting nonexistent shop
+    should throw error when editing nonexistent shop
+    should throw error when deleting nonexistent shop
+    should get empty shops
+
+review
+    should create review
+    should get user reviews
+    should get user reviews by page
+    should get shop reviews
+    should get shop reviews by page
+    should get review by id
+    should throw error when editing another user review
+    should edit review
+    should throw error when deleting another user review
+    should delete review
+    should throw error when getting nonexistent review
+    should throw error when editing nonexistent review
+    should throw error when deleting nonexistent review
+    should get empty reviews
+
+room
+    should create room
+    should throw error getting all rooms as non admin
+    should get all rooms
+    should get user rooms
+    should get room by id
+    should edit room
+    should add user to room
+    should throw error when adding to nonexistent room
+    should throw error when adding nonexistent user
+    should throw error if wrong user adds to room
+    should throw error if wrong user edits room
+    should throw error if wrong user deletes room
+    should throw error when removing from nonexistent room
+    should throw error when removing nonexistent user
+    should throw error if wrong user removes from room
+    should remove user from room
+    should delete room
+    should throw error when getting nonexistent room
+    should throw error when editing nonexistent room
+    should throw error when deleting nonexistent room
+    should get empty rooms

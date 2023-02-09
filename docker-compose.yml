@@ -27,7 +27,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: nest-api                                         
+    image: nest-api
     container_name: nest-api
     depends_on:
       - test-db
@@ -50,7 +50,7 @@ services:
       - 8086:8086
     environment:
       - INFLUXDB_DB=k6
-    
+
   grafana:
     image: grafana/grafana:latest
     depends_on:
@@ -138,7 +138,7 @@ services:
     volumes:
        - ./dist/test:/test
     command: run /test/load/shop.load.js
-    
+
   k6-user:
     image: grafana/k6:latest
     depends_on:

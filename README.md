@@ -8,21 +8,19 @@
   <a href="https://github.com/prettier/prettier">
     <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?" alt="code style: prettier">
   </a>
-  <a href="https://img.shields.io/lgtm/grade/javascript/g/PedroCorreia105/NestApi.svg?logo=lgtm&logoWidth=18">
-    <img src="https://img.shields.io/lgtm/grade/javascript/g/PedroCorreia105/NestApi.svg?logo=lgtm&logoWidth=18" alt="Code Quality">
+  <a href="https://www.codefactor.io/repository/github/pedrocorreia105/nestapi/overview/master">
+    <img src="https://www.codefactor.io/repository/github/pedrocorreia105/nestapi/badge/master" alt="CodeFactor" />
   </a>
-  <!-- <a href="https://snyk.io/test/github/PedroCorreia105/NestApi/badge.svg?targetFile=package.json">
-    <img src="https://snyk.io/test/github/PedroCorreia105/NestApi/badge.svg?targetFile=package.json" alt="Known Vulnerabilities">
-  </a> -->
   <a href="https://codecov.io/gh/PedroCorreia105/NestApi/branch/master">
     <img src="https://codecov.io/gh/PedroCorreia105/NestApi/branch/master/graph/badge.svg" alt="Code Coverage">
   </a>
-  <a href="https://github.com/PedroCorreia105/NestApi/actions">
-    <img src="https://img.shields.io/github/workflow/status/PedroCorreia105/NestApi/build" alt="Build">
+  <a href="https://github.com/PedroCorreia105/NestAPI/actions/workflows/build.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/PedroCorreia105/NestApi/build.yml" alt="Build">
   </a>
   <a href="https://github.com/PedroCorreia105/NestApi/blob/master/LICENCE">
     <img src="https://img.shields.io/github/license/PedroCorreia105/NestApi" alt="License">
   </a>
+  <img src="https://img.shields.io/github/stars/PedroCorreia105/NestApi?style=social" alt="Stars">
 </p>
 
 <p align="center">
@@ -125,11 +123,13 @@ A dockerized boilerplate <a href="http://nodejs.org" target="blank">Node.js</a> 
  </table>
 
 ## Installation
+
 ```bash
 $ npm install
 ```
 
 ## Database
+
 ```bash
 # Start postgres container and push migrations
 $ npm run db:dev:restart
@@ -151,6 +151,7 @@ $ npx prisma studio
 </p>
 
 ## Running the app
+
 ```bash
 # Development
 $ npm run start
@@ -163,6 +164,7 @@ $ npm run start:prod
 ```
 
 ## Endpoints
+
 ```bash
 # API
 http://localhost:8080
@@ -175,6 +177,7 @@ http://localhost:3000/d/k6/k6-load-testing-results
 ```
 
 ## Test
+
 ```bash
 # Run e2e tests
 $ npm run test
@@ -185,6 +188,7 @@ $ npm run test:cov
 # Run load tests
 $ npm run test:load
 ```
+
 <table>
   <tr>
     <td valign="center" width="40%"><img src="resources/coverage.png" alt="Coverage Report" /></td>
@@ -193,19 +197,23 @@ $ npm run test:load
 </table>
 
 ## Video Tutorials
-* [NestJs Course for Beginners - Create a REST API](https://www.youtube.com/watch?v=GHTA143_b-s)
-* [Building a REST API with NestJS and Prisma - Marc Stammerjohann](https://www.youtube.com/watch?v=mmbd5hcQUaY)
+
+- [NestJs Course for Beginners - Create a REST API](https://www.youtube.com/watch?v=GHTA143_b-s)
+- [Building a REST API with NestJS and Prisma - Marc Stammerjohann](https://www.youtube.com/watch?v=mmbd5hcQUaY)
 
 ## Helpful repos
-* https://github.com/vladwulf/nestjs-api-tutorial
-* https://github.com/marcjulian/nestjs-prisma-workshop
-* https://github.com/brocoders/nestjs-boilerplate
-* https://github.com/deboraornellas/nestjs-testing
-* https://github.com/makinhs/medium-article-code-cov
-* https://github.com/tkssharma/nestjs-advance-course
+
+- https://github.com/vladwulf/nestjs-api-tutorial
+- https://github.com/marcjulian/nestjs-prisma-workshop
+- https://github.com/brocoders/nestjs-boilerplate
+- https://github.com/deboraornellas/nestjs-testing
+- https://github.com/makinhs/medium-article-code-cov
+- https://github.com/tkssharma/nestjs-advance-course
 
 ## Node best practices
-* https://github.com/goldbergyoni/nodebestpractices
+
+- https://github.com/goldbergyoni/nodebestpractices
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/PedroCorreia105/NestApi/blob/master/LICENCE) file for details.
